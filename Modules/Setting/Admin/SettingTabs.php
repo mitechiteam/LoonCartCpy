@@ -30,6 +30,9 @@ class SettingTabs extends Tabs
             ->add($this->newsletter())
             ->add($this->customCssJs());
 
+        $this->group('api_keys', trans('setting::settings.tabs.group.api_keys'))
+            ->add($this->firebase());
+
         $this->group('social_logins', trans('setting::settings.tabs.group.social_logins'))
             ->add($this->facebook())
             ->add($this->google());

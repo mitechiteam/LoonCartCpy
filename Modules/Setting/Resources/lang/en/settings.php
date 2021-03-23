@@ -5,6 +5,7 @@ return [
     'tabs' => [
         'group' => [
             'general_settings' => 'General Settings',
+            'api_keys' => 'API Keys',
             'social_logins' => 'Social Logins',
             'shipping_methods' => 'Shipping Methods',
             'payment_methods' => 'Payment Methods',
@@ -17,6 +18,7 @@ return [
         'mail' => 'Mail',
         'newsletter' => 'Newsletter',
         'custom_css_js' => 'Custom CSS/JS',
+        'firebase' => 'Firebase',
         'facebook' => 'Facebook',
         'google' => 'Google',
         'free_shipping' => 'Free Shipping',
