@@ -12,6 +12,9 @@
 
                     <h2>{{ trans('storefront::order_complete.order_placed') }}</h2>
                     <span>{!! trans('storefront::order_complete.your_order_has_been_placed', ['id' => $order->id]) !!}</span>
+                    <a href="{{ route('home') }}" class="btn btn-primary my-4">
+                        {{ trans('storefront::order_complete.continue_shopping') }}
+                    </a>
                 </div>
             </div>
         </div>
