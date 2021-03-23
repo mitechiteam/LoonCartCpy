@@ -5,7 +5,7 @@
 @section('content')
     @includeUnless(is_null($slider), 'public.home.sections.slider')
 
-    @if (setting('storefront_features_section_enabled'))
+    @if (setting('storefront_features_section_enabled') && !is_mobile_app())
         <home-features :features="{{ json_encode($features) }}"></home-features>
     @endif
 

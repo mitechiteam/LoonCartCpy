@@ -281,3 +281,46 @@ if (! function_exists('html_attrs')) {
         return $string;
     }
 }
+
+
+
+if (! function_exists('mobile_app')) {
+    /**
+     * Returns mobile app cookie values
+     *
+     * @return stdClass
+     */
+    function mobile_app()
+    {
+        $mobileApp = new \stdClass();
+        $mobileApp->isApp = isset($_COOKIE['mobile_app']) ? true : false;
+        $mobileApp->platform = isset($_COOKIE['mobile_app_platform']) ? $_COOKIE['mobile_app_platform'] : 'unknown';
+        $mobileApp->versionCode = isset($_COOKIE['mobile_app_version_code']) ? $_COOKIE['mobile_app_version_code'] : 0;
+        return $mobileApp;
+    }
+}
+
+if (! function_exists('is_mobile_app')) {
+    /**
+     * Checks request is from mobile app or not
+     *
+     * @return stdClass
+     */
+    function is_mobile_app()
+    {
+        return mobile_app()->isApp;
+    }
+}
+
+if (! function_exists('is_current_url')) {
+    /**
+     * Checks the given url is current url
+     *
+     * @param string $url
+     * @return boolean
+     */
+    function is_current_url($url)
+    {
+        return starts_with($url, config('app.url')) && url(parse_url($url)['path']) === request()->url();
+    }
+}
