@@ -124,8 +124,20 @@ abstract class BaseAuthController extends Controller
 
         event(new CustomerRegistered($user));
 
-        return redirect($this->loginUrl())
-            ->withSuccess(trans('user::messages.users.account_created'));
+        /*return redirect($this->loginUrl())
+            ->withSuccess(trans('user::messages.users.account_created'));*/
+
+        $loggedIn = $this->auth->login([
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        if (! $loggedIn) {
+            return back()->withInput()
+                ->withError(trans('user::messages.users.invalid_credentials'));
+        }
+
+        return redirect()->intended($this->redirectTo());
     }
 
     protected function assignCustomerRole($user)
