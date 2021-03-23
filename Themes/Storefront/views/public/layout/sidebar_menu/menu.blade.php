@@ -1,4 +1,4 @@
-<ul class="list-inline account-sidebar">
+<ul class="list-inline {{ $type === 'category_menu' ? 'sidebar-menu' : 'account-sidebar' }}">
     @foreach ($menu->menus() as $menu)
         <li class="{{ $menu->hasSubMenus() ? 'dropdown multi-level' : '' }} {{ is_current_url($menu->url()) ? 'active' : '' }}">
             <a href="{{ $menu->url() }}" class="menu-item" target="{{ $menu->target() }}">
