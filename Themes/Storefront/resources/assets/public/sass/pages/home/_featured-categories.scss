@@ -23,7 +23,10 @@
 }
 
 .featured-categories-tabs {
-	display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: -webkit-box;
+    display: -moz-box;
 
 	.tab-item {
 		display: flex;
@@ -157,8 +160,8 @@
 		}
 
 		.tabs {
-			margin: 30px -15px -30px;
-			flex-wrap: wrap;
+			margin: 0 -15px -30px;
+			flex-wrap: unset;
 			justify-content: center;
 
 			.tab-item {
