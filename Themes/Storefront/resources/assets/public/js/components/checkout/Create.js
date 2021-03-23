@@ -448,28 +448,58 @@ export default {
 
             let vm = this;
 
-            new window.Razorpay({
-                key: FleetCart.razorpayKeyId,
-                name: FleetCart.storeName,
-                description: `Payment for order #${razorpayOrder.receipt}`,
-                image: FleetCart.storeLogo,
-                order_id: razorpayOrder.id,
-                handler(response) {
-                    vm.placingOrder = true;
+            if (FleetCart.mobileApp.isApp
+                && typeof Android != 'undefined'
+                && typeof Android.confirmRazorpayPayment === 'function') {
+                Android.confirmRazorpayPayment(
+                    JSON.stringify({
+                        key: FleetCart.razorpayKeyId,
+                        receipt: razorpayOrder.receipt,
+                        name: FleetCart.storeName,
+                        description: `Payment for order #${razorpayOrder.receipt}`,
+                        image: FleetCart.storeLogo,
+                        order_id: razorpayOrder.id,
+                        currency: razorpayOrder.currency,
+                        amount: razorpayOrder.amount,
+                        prefill: {
+                            name: `${vm.form.billing.first_name} ${vm.form.billing.last_name}`,
+                            email: vm.form.customer_email,
+                            contact: vm.form.customer_phone,
+                        },
+                    })
+                );
+            }
+            else {
+                new window.Razorpay({
+                    key: FleetCart.razorpayKeyId,
+                    name: FleetCart.storeName,
+                    description: `Payment for order #${razorpayOrder.receipt}`,
+                    image: FleetCart.storeLogo,
+                    order_id: razorpayOrder.id,
+                    handler(response) {
+                        vm.placingOrder = true;
 
-                    vm.confirmOrder(razorpayOrder.receipt, 'razorpay', response);
-                },
-                modal: {
-                    ondismiss() {
-                        vm.deleteOrder(razorpayOrder.receipt.receipt);
+                        vm.confirmOrder(razorpayOrder.receipt, 'razorpay', response);
                     },
-                },
-                prefill: {
-                    name: `${vm.form.billing.first_name} ${vm.form.billing.last_name}`,
-                    email: vm.form.customer_email,
-                    contact: vm.form.customer_phone,
-                },
-            }).open();
+                    modal: {
+                        ondismiss() {
+                            vm.deleteOrder(razorpayOrder.receipt.receipt);
+                        },
+                    },
+                    prefill: {
+                        name: `${vm.form.billing.first_name} ${vm.form.billing.last_name}`,
+                        email: vm.form.customer_email,
+                        contact: vm.form.customer_phone,
+                    },
+                }).open();
+            }
+        },
+
+        confirmRazorpayOrder(receipt, response) {
+            let vm = this;
+
+            vm.placingOrder = true;
+            vm.confirmOrder(receipt, 'razorpay', response);
         },
     },
 };

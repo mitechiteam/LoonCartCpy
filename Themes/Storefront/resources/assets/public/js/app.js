@@ -96,3 +96,5 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': FleetCart.csrfToken,
     },
 });
+
+window.CheckoutCreate = CheckoutCreate;

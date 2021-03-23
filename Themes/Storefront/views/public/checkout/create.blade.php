@@ -61,5 +61,14 @@
 
     @if (setting('razorpay_enabled'))
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        @if(is_mobile_app())
+            <script type="text/javascript">
+                if (FleetCart.mobileApp.isApp
+                    && typeof Android != 'undefined'
+                    && typeof Android.preloadRazorpayPayment === 'function') {
+                    Android.preloadRazorpayPayment(FleetCart.razorpayKeyId);
+                }
+            </script>
+        @endif
     @endif
 @endpush
