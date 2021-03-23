@@ -65,6 +65,10 @@ return [
     'custom_header_assets' => 'Header',
     'custom_footer_assets' => 'Footer',
 
+    'firebase_web_api_key' => 'Web API Key',
+    'firebase_dynamic_link_prefix' => 'Dynamic Link Prefix',
+    'firebase_apn' => 'Android Package Name',
+
     'facebook_login_enabled' => 'Status',
     'facebook_login_app_id' => 'App ID',
     'facebook_login_app_secret' => 'App Secret',
