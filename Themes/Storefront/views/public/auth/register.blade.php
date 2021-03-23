@@ -52,7 +52,7 @@
                             {{ trans('user::auth.phone') }}<span>*</span>
                         </label>
 
-                        <input type="text" name="phone" value="{{ old('phone') }}" id="phone" class="form-control">
+                        <input type="tel" name="phone" value="{{ old('phone') }}" id="phone" class="form-control">
 
                         @error('phone')
                             <span class="error-message">{{ $message }}</span>
