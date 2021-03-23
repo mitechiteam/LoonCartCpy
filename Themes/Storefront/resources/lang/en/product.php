@@ -19,6 +19,7 @@ return [
     'twitter' => 'Twitter',
     'linkedin' => 'Linkedin',
     'tumblr' => 'Tumblr',
+    'whatsapp' => 'Whatsapp',
     'you_might_also_like' => 'You might also like',
     'description' => 'Description',
     'specification' => 'Specification',
