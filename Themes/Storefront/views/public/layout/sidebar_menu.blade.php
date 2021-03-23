@@ -23,7 +23,11 @@
 
     <div class="tab-content custom-scrollbar">
         <div id="main-menu" class="tab-pane active">
-            @include('public.layout.sidebar_menu.menu', ['type' => 'primary_menu', 'menu' => $primaryMenu])
+            @auth
+                @include('public.layout.sidebar_menu.menu', ['type' => 'primary_menu_auth', 'menu' => $primaryMenuAuth])
+            @else
+                @include('public.layout.sidebar_menu.menu', ['type' => 'primary_menu', 'menu' => $primaryMenu])
+            @endauth
         </div>
 
         <div id="category-menu" class="tab-pane">

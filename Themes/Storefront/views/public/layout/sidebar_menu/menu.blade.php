@@ -1,11 +1,15 @@
-<ul class="list-inline sidebar-menu">
+<ul class="list-inline account-sidebar">
     @foreach ($menu->menus() as $menu)
-        <li class="{{ $menu->hasSubMenus() ? 'dropdown multi-level' : '' }}">
+        <li class="{{ $menu->hasSubMenus() ? 'dropdown multi-level' : '' }} {{ is_current_url($menu->url()) ? 'active' : '' }}">
             <a href="{{ $menu->url() }}" class="menu-item" target="{{ $menu->target() }}">
                 @if ($type === 'category_menu' && $menu->hasIcon())
-                    <span class="menu-item-icon">
+                    @if($type === 'category_menu')
+                        <span class="menu-item-icon">
+                            <i class="{{ $menu->icon() }}"></i>
+                        </span>
+                    @else
                         <i class="{{ $menu->icon() }}"></i>
-                    </span>
+                    @endif
                 @endif
 
                 {{ $menu->name() }}
@@ -27,5 +31,19 @@
                 {{ trans('storefront::layout.all_categories') }}
             </a>
         </li>
+    @else
+        @auth
+            <li>
+                <a href="{{ route('logout') }}" class="menu-item">
+                    Logout
+                </a>
+            </li>
+        @else
+            <li>
+                <a href="{{ route('login') }}" class="menu-item">
+                    Login
+                </a>
+            </li>
+        @endauth
     @endif
 </ul>

@@ -12,6 +12,7 @@ return [
     'storefront_address' => 'Address',
     'storefront_navbar_text' => 'Navbar Text',
     'storefront_primary_menu' => 'Primary Menu',
+    'storefront_primary_menu_auth' => 'Primary Menu Auth',
     'storefront_category_menu' => 'Category Menu',
     'storefront_footer_menu_one_title' => 'Footer Menu One Title',
     'storefront_footer_menu_one' => 'Footer Menu One',

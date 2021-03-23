@@ -50,6 +50,7 @@ class LayoutComposer
             'categories' => $this->getCategories(),
             'mostSearchedKeywords' => $this->getMostSearchedKeywords(),
             'primaryMenu' => $this->getPrimaryMenu(),
+            'primaryMenuAuth' => $this->getPrimaryMenuAuth(),
             'categoryMenu' => $this->getCategoryMenu(),
             'cart' => $this->getCart(),
             'wishlist' => $this->getWishlist(),
@@ -116,6 +117,11 @@ class LayoutComposer
     private function getPrimaryMenu()
     {
         return new MegaMenu(setting('storefront_primary_menu'));
+    }
+
+    private function getPrimaryMenuAuth()
+    {
+        return new MegaMenu(setting('storefront_primary_menu_auth'));
     }
 
     private function getCategoryMenu()
