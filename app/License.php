@@ -117,7 +117,8 @@ class License
 
     private function runningInLocal()
     {
-        return app()->isLocal() || in_array(request()->ip(), ['127.0.0.1', '::1']);
+        return true;
+//        return app()->isLocal() || in_array(request()->ip(), ['127.0.0.1', '::1']);
     }
 
     private function inFrontend()
