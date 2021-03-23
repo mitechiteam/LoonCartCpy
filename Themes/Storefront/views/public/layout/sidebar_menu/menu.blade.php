@@ -2,7 +2,7 @@
     @foreach ($menu->menus() as $menu)
         <li class="{{ $menu->hasSubMenus() ? 'dropdown multi-level' : '' }} {{ is_current_url($menu->url()) ? 'active' : '' }}">
             <a href="{{ $menu->url() }}" class="menu-item" target="{{ $menu->target() }}">
-                @if ($type === 'category_menu' && $menu->hasIcon())
+                @if ($menu->hasIcon())
                     @if($type === 'category_menu')
                         <span class="menu-item-icon">
                             <i class="{{ $menu->icon() }}"></i>
