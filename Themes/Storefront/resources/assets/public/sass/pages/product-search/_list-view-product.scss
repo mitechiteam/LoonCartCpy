@@ -192,3 +192,27 @@
         }
     }
 }
+
+@media screen and (max-width: $md) {
+    .list-product-card {
+        margin-bottom: 0;
+
+        .list-product-card-inner {
+            padding: 16px 10px;
+            border: unset;
+            border-bottom: 1px solid #ebebeb;
+            border-radius: 0;
+            flex-direction: unset;
+
+            .product-card-left {
+                width: unset;
+                margin-bottom: 0;
+
+                .product-image {
+                    height: 150px;
+                    width: 150px;
+                }
+            }
+        }
+    }
+}
