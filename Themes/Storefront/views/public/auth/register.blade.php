@@ -40,7 +40,7 @@
                             {{ trans('user::auth.email') }}<span>*</span>
                         </label>
 
-                        <input type="text" name="email" value="{{ old('email') }}" id="email" class="form-control">
+                        <input type="email" name="email" value="{{ old('email') }}" id="email" class="form-control">
 
                         @error('email')
                             <span class="error-message">{{ $message }}</span>
