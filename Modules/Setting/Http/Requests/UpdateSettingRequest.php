@@ -71,6 +71,10 @@ class UpdateSettingRequest extends Request
             'mailchimp_api_key' => ['required_if:newsletter_enabled,1'],
             'mailchimp_list_id' => ['required_if:newsletter_enabled,1'],
 
+            'firebase_web_api_key' => 'nullable',
+            'firebase_dynamic_link_prefix' => 'nullable',
+            'firebase_apn' => 'nullable',
+
             'facebook_login_enabled' => 'required|boolean',
             'facebook_login_app_id' => 'required_if:facebook_login_enabled,1',
             'facebook_login_app_secret' => 'required_if:facebook_login_enabled,1',

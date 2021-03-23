@@ -201,6 +201,21 @@ class SettingTabs extends Tabs
         });
     }
 
+    private function firebase()
+    {
+        return tap(new Tab('firebase', trans('setting::settings.tabs.firebase')), function (Tab $tab) {
+            $tab->weight(36);
+
+            $tab->fields([
+                'firebase_web_api_key',
+                'firebase_dynamic_link_prefix',
+                'firebase_apn'
+            ]);
+
+            $tab->view('setting::admin.settings.tabs.firebase');
+        });
+    }
+
     private function facebook()
     {
         return tap(new Tab('facebook', trans('setting::settings.tabs.facebook')), function (Tab $tab) {
