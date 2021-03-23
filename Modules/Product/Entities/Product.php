@@ -2,6 +2,8 @@
 
 namespace Modules\Product\Entities;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use Modules\Support\Money;
 use Modules\Tag\Entities\Tag;
 use Modules\Media\Entities\File;
@@ -361,6 +363,32 @@ class Product extends Model
     public function url()
     {
         return route('products.show', ['slug' => $this->slug]);
+    }
+
+    public function dynamicLink()
+    {
+        $link = $this->url();
+        if (!empty(setting('firebase_web_api_key')) && filter_var(setting('firebase_dynamic_link_prefix', ''), FILTER_VALIDATE_URL))
+        {
+            $options = array(
+                RequestOptions::JSON => array(
+                    'dynamicLinkInfo' => array(
+                        'domainUriPrefix' => setting('firebase_dynamic_link_prefix', ''),
+                        'link' => $link,
+                        'androidInfo' => array(
+                            'androidPackageName' => setting('firebase_apn')
+                        )
+                    )
+                )
+            );
+            $client = new Client();
+            $response = $client->post('https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key='.setting('firebase_web_api_key'), $options)
+                ->getBody();
+            $response = json_decode($response, true);
+            if (!empty($response['shortLink']) && filter_var($response['shortLink'], FILTER_VALIDATE_URL))
+                $link = $response['shortLink'];
+        }
+        return $link;
     }
 
     public function isInStock()
